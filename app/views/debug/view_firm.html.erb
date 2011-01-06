@@ -1,0 +1,96 @@
+<h1>Debug#view_firm</h1>
+<div class="firm">
+  <div class="firm_name"><%= @firm.name %></div>
+  <div class="firm_site"><a href="<%= @firm.site %>"><%= @firm.site %></a></div>
+
+  <% if @firm.originated %>
+  <div class="firm_originated">
+    <div class="header">Дата основания:</div>
+    <div class="value"><%= @firm.originated.year %></div>
+  </div>
+  <% end %>
+
+  <div class="firm_subject">
+    <div class="header">Сфера деятельности:</div>
+    <div class="value"><%= @firm.subject %></div>
+  </div>
+
+  <div class="firm_types">
+    <div class="header">Тип:</div>
+    <div class="value"><%= @firm.firm_types. map { |t| t.name }. join ", " %></div>
+  </div>
+
+  <% if @firm.firm_products %>
+    <div class="firm_products">
+      <div class="header">Продукты:</div>
+      <div class="value">
+      <ul>
+        <% @firm.firm_products.each do |p| %>
+          <li>
+          <div class="firm_product_name">
+          <% if p.site %>
+            <a href="<%= p.site %>"><%= p.name %></a>
+          <% else %>
+            <%= p.name %>
+          <% end %>
+          </div>
+          <div class="firm_product_description">
+            <%= p.description %>
+          </div>
+          </li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="firm_offices">
+    <div class="header">Офисы:</div>
+    <div class="value">
+    <ul>
+    <% @firm.offices.each do |office| %>
+      <li>
+        <div class="firm_office_address"><%= office.address %></div>
+        <ul>
+          <% office.bonuses.each do |b| %>
+            <li>
+              <div class="firm_office_bonus_name"><%= b.name %></div>
+              <div class="firm_office_bonus_description"><%= b.description %></div>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    </ul>
+    </div>
+  </div>
+
+  <div class="firm_atmoshpere">
+    <div class="header">Атмосфера:</div>
+    <div class="value"><%= @firm.atmosphere %></div>
+  </div>
+
+  <div class="firm_technologies">
+    <div class="header">Технологии:</div>
+    <div class="value"><%= @firm.technologies %></div>
+  </div>
+
+  <div class="firm_methodologies">
+    <div class="header">Методологии:</div>
+    <!-- TODO: show base methodology if any -->
+    <div class="value"><%= @firm.methodologies. map { |m| m.description }. join "<br />\n" %></div>
+  </div>
+
+  <div class="firm_connections">
+    <div class="header">Связи:</div>
+    <div class="value">
+      <ul>
+        <% @firm.source_connections.each do |c| %>
+          <li>
+          <%= c.description %> с <%= link_to c.target.name, :controller => :debug, :action => :view_firm, :id => c.target %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

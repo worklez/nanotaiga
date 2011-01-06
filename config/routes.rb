@@ -1,4 +1,6 @@
 Nanotaiga::Application.routes.draw do
+  match 'debug/view/:id' => 'debug#view_firm'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
