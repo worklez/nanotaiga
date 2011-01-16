@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116015102) do
+ActiveRecord::Schema.define(:version => 20110116071224) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -103,6 +103,18 @@ ActiveRecord::Schema.define(:version => 20110116015102) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.integer  "likable_id",   :null => false
+    t.string   "likable_type", :null => false
+    t.integer  "value",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["likable_type", "likable_id"], :name => "index_likable_type"
+  add_index "likes", ["user_id"], :name => "fk_likes_user"
 
   create_table "methodologies", :force => true do |t|
     t.integer  "methodology_base_id"

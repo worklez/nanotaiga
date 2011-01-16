@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/worklez/acts_as_likable.git
+  revision: ad316db9ad7dc2d27cb0c28bdb57175e01d14004
+  specs:
+    acts_as_likable (1.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -96,6 +102,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable
+  acts_as_likable!
   devise
   rails (= 3.0.3)
   rspec (= 2.3.0)

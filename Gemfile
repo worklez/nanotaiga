@@ -6,6 +6,7 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'acts_as_commentable'
+gem 'acts_as_likable', :git => 'git://github.com/worklez/acts_as_likable.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 

@@ -18,6 +18,12 @@
     2 TODO: add all the other comments
     3 TODO: make comment submitter
     -->
+
+  <!--
+    Same for votes.
+    1 TODO: add all the other likes
+    2 TODO: voter
+    -->
   <div class="firm_site"><a href="<%= @firm.site %>"><%= @firm.site %></a></div>
 
   <% if @firm.originated %>
@@ -50,6 +56,7 @@
           <% else %>
             <%= p.name %>
           <% end %>
+          <sup class="firm_product_rate"><%= p.likes_sum %></sup>
           </div>
           <div class="firm_product_description">
             <%= p.description %>
