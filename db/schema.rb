@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110106202008) do
+ActiveRecord::Schema.define(:version => 20110116001115) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "opt_author_id"
+    t.string   "opt_secret_key"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "firm_products", :force => true do |t|
     t.string   "name"
@@ -21,6 +29,13 @@ ActiveRecord::Schema.define(:version => 20110106202008) do
     t.integer  "firm_profile_id"
   end
 
+  create_table "firm_profile_atmospheres", :force => true do |t|
+    t.text     "atmosphere"
+    t.integer  "firm_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "firm_profile_connections", :force => true do |t|
     t.integer  "source_firm_id"
     t.integer  "target_firm_id"
@@ -29,13 +44,42 @@ ActiveRecord::Schema.define(:version => 20110106202008) do
     t.datetime "updated_at"
   end
 
-  create_table "firm_profiles", :force => true do |t|
+  create_table "firm_profile_names", :force => true do |t|
     t.string   "name"
-    t.date     "originated"
-    t.text     "subject"
-    t.text     "atmosphere"
-    t.text     "technologies"
+    t.integer  "firm_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "firm_profile_origin_dates", :force => true do |t|
+    t.datetime "originated"
+    t.integer  "firm_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "firm_profile_sites", :force => true do |t|
     t.string   "site"
+    t.integer  "firm_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "firm_profile_subjects", :force => true do |t|
+    t.text     "subject"
+    t.integer  "firm_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "firm_profile_technologies", :force => true do |t|
+    t.text     "technologies"
+    t.integer  "firm_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "firm_profiles", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +124,15 @@ ActiveRecord::Schema.define(:version => 20110106202008) do
     t.string   "city"
     t.string   "address"
     t.integer  "firm_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "firm_profile_id"
+    t.string   "subject"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
