@@ -1,4 +1,6 @@
 class FirmProfile < ActiveRecord::Base
+  acts_as_commentable
+
   has_many :firm_products
   has_many :offices
   has_many :methodologies
@@ -31,6 +33,30 @@ class FirmProfile < ActiveRecord::Base
 
   def technologies
     self.firm_profile_technologies.technologies if self.firm_profile_technologies
+  end
+
+  def site
+    self.firm_profile_site.site if self.firm_profile_site
+  end
+
+  def name_comments
+    self.firm_profile_name.comments if self.firm_profile_name
+  end
+
+  def originated_comments
+    self.firm_profile_origin_date.comments if self.firm_profile_origin_date
+  end
+
+  def subject_comments
+    self.firm_profile_subject.comments if self.firm_profile_subject
+  end
+
+  def atmosphere_comments
+    self.firm_profile_atmosphere.comments if self.firm_profile_atmosphere
+  end
+
+  def technologies_comments
+    self.firm_profile_technologies.comments if self.firm_profile_technologies
   end
 
   def site

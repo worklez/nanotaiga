@@ -10,15 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116001115) do
+ActiveRecord::Schema.define(:version => 20110116015102) do
 
   create_table "comments", :force => true do |t|
-    t.integer  "opt_author_id"
-    t.string   "opt_secret_key"
-    t.text     "body"
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "firm_products", :force => true do |t|
     t.string   "name"
@@ -133,6 +139,11 @@ ActiveRecord::Schema.define(:version => 20110116001115) do
     t.integer  "firm_profile_id"
     t.string   "subject"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

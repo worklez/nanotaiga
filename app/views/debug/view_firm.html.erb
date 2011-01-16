@@ -1,6 +1,23 @@
 <h1>Debug#view_firm</h1>
 <div class="firm">
   <div class="firm_name"><%= @firm.name %></div>
+
+  <% @firm.name_comments.each do |c| %>
+  <div class="firm_profile_name_comments">
+    <div class="firm_profile_name_comment">
+      <%= c.comment %>
+    </div>
+    <div class="firm_profile_name_comment_author">
+      -- by <%= c.user || "Anonymous" %>
+    </div>
+  </div>
+  <% end %>
+
+  <!--
+    1 TODO: add helper for the 'c.user || "Anonymous"'
+    2 TODO: add all the other comments
+    3 TODO: make comment submitter
+    -->
   <div class="firm_site"><a href="<%= @firm.site %>"><%= @firm.site %></a></div>
 
   <% if @firm.originated %>

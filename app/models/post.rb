@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
+  acts_as_commentable
+
   belongs_to :firm_profile
-  # TODO: when we will have users, add smth like
-  # belongs_to :author, :foreign_key => :author_id, :class_name => "User"
+  belongs_to :author, :foreign_key => :author_id, :class_name => "User"
 end
