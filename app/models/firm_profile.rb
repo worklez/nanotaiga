@@ -14,26 +14,26 @@ class FirmProfile < ActiveRecord::Base
   has_one :firm_profile_site
 
   def name
-    self.firm_profile_name.name
+    self.firm_profile_name.name if self.firm_profile_name
   end
 
   def originated
-    self.firm_profile_origin_date.originated
+    self.firm_profile_origin_date.originated if self.firm_profile_origin_date
   end
 
   def subject
-    self.firm_profile_subject.subject
+    self.firm_profile_subject.subject if self.firm_profile_subject
   end
 
   def atmosphere
-    self.firm_profile_atmosphere.atmosphere
+    self.firm_profile_atmosphere.atmosphere if self.firm_profile_atmosphere
   end
 
   def technologies
-    self.firm_profile_technologies.technologies
+    self.firm_profile_technologies.technologies if self.firm_profile_technologies
   end
 
   def site
-    self.firm_profile_site.site
+    self.firm_profile_site.site if self.firm_profile_site
   end
 end
