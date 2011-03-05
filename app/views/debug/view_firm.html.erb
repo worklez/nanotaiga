@@ -1,120 +1,93 @@
-<h1>Debug#view_firm</h1>
-<div class="firm">
-  <div class="firm_name"><%= @firm.name %></div>
-
-  <% @firm.name_comments.each do |c| %>
-  <div class="firm_profile_name_comments">
-    <div class="firm_profile_name_comment">
-      <%= c.comment %>
-    </div>
-    <div class="firm_profile_name_comment_author">
-      -- by <%= c.user || "Anonymous" %>
-    </div>
-  </div>
-  <% end %>
-
-  <!--
-    1 TODO: add helper for the 'c.user || "Anonymous"'
-    2 TODO: add all the other comments
-    3 TODO: make comment submitter
-    -->
-
-  <!--
-    Same for votes.
-    1 TODO: add all the other likes
-    2 TODO: voter
-    -->
-  <div class="firm_site"><a href="<%= @firm.site %>"><%= @firm.site %></a></div>
-
-  <% if @firm.originated %>
-  <div class="firm_originated">
-    <div class="header">Дата основания:</div>
-    <div class="value"><%= @firm.originated.year %></div>
-  </div>
-  <% end %>
-
-  <div class="firm_subject">
-    <div class="header">Сфера деятельности:</div>
-    <div class="value"><%= @firm.subject %></div>
-  </div>
-
-  <div class="firm_types">
-    <div class="header">Тип:</div>
-    <div class="value"><%= @firm.firm_types. map { |t| t.name }. join ", " %></div>
-  </div>
-
-  <% if @firm.firm_products %>
-    <div class="firm_products">
-      <div class="header">Продукты:</div>
-      <div class="value">
-      <ul>
-        <% @firm.firm_products.each do |p| %>
-          <li>
-          <div class="firm_product_name">
-          <% if p.site %>
-            <a href="<%= p.site %>"><%= p.name %></a>
-          <% else %>
-            <%= p.name %>
-          <% end %>
-          <sup class="firm_product_rate"><%= p.likes_sum %></sup>
-          </div>
-          <div class="firm_product_description">
-            <%= p.description %>
-          </div>
-          </li>
+    <section id="firm-profile">
+        <header>
+        <h1><%= @firm.name %></h1>
+        <div id="firm-site"><a href="<%= @firm.site %>"><%= @firm.site %></a></div>
+        <span id="firm-subject"><%= @firm.subject %></span>
+        <% if @firm.originated %>
+               , <time id="firm-originated"><%= @firm.originated.year %></time>
         <% end %>
-      </ul>
-      </div>
-    </div>
-  <% end %>
+        </header>
 
-  <div class="firm_offices">
-    <div class="header">Офисы:</div>
-    <div class="value">
-    <ul>
-    <% @firm.offices.each do |office| %>
-      <li>
-        <div class="firm_office_address"><%= office.address %></div>
-        <ul>
-          <% office.bonuses.each do |b| %>
-            <li>
-              <div class="firm_office_bonus_name"><%= b.name %></div>
-              <div class="firm_office_bonus_description"><%= b.description %></div>
-            </li>
-          <% end %>
-        </ul>
-      </li>
-    <% end %>
-    </ul>
-    </div>
-  </div>
+        <% if @firm.firm_products.any? %>
+        <section id="firm-products">
+            <header><h1>В <%= @firm.name %> делают</h1></header>
+            <ul>
+            <% @firm.firm_products.each do |p| %>
+              <li class="firm-product">
 
-  <div class="firm_atmoshpere">
-    <div class="header">Атмосфера:</div>
-    <div class="value"><%= @firm.atmosphere %></div>
-  </div>
+                <% if p.site %>
+                  <a href="<%= p.site %>"><%= p.name %></a>
+                <% else %>
+                  <%= p.name %>
+                <% end %>
 
-  <div class="firm_technologies">
-    <div class="header">Технологии:</div>
-    <div class="value"><%= @firm.technologies %></div>
-  </div>
+                <sup class="firm_product_rate"><%= p.likes_sum %></sup>
 
-  <div class="firm_methodologies">
-    <div class="header">Методологии:</div>
-    <!-- TODO: show base methodology if any -->
-    <div class="value"><%= @firm.methodologies. map { |m| m.description }. join "<br />\n" %></div>
-  </div>
-
-  <div class="firm_connections">
-    <div class="header">Связи:</div>
-    <div class="value">
-      <ul>
-        <% @firm.source_connections.each do |c| %>
-          <li>
-          <%= c.description %> с <%= link_to c.target.name, :controller => :debug, :action => :view_firm, :id => c.target %>
-          </li>
+                <% if p.description %>
+                  <div class="firm_product_description"><%= p.description %></div>
+                <% end %>
+              </li>
+            <% end %>
+            </ul>
+        </section>
         <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
+
+        <% if @firm.offices.any? %>
+        <section id="firm-offices">
+            <header><h1>Офис<%= "ы" if @firm.offices.length > 1 %></h1></header>
+
+            <% @firm.offices.each do |office| %>
+            <section class="firm-office">
+                <header><h1 class="firm-office-address"><%= office.address %></h1></header>
+                <ul>
+                    <% office.bonuses.each do |b| %>
+                      <li class="firm-office-feature">
+                      <% if b.name %><header><%= b.name %></header><% end %>
+                      <%= b.description %>
+                      </li>
+                    <% end %>
+                </ul>
+            </section>
+            <% end %>
+          </section>
+          <% end %>
+
+        <% if @firm.atmosphere %>
+        <section id="firm-atmosphere">
+            <header><h1>Атмосфера</h1></header>
+            <p><%= @firm.atmosphere %></p>
+        </section>
+        <% end %>
+
+        <% if @firm.technologies %>
+        <section id="firm-technologies">
+            <header><h1>Технологии</h1></header>
+            <p><%= @firm.technologies %></p>
+        </section>
+        <% end %>
+
+        <% if @firm.methodologies.any? %>
+        <section id="firm-methodologies">
+          <header><h1>Методологии</h1></header>
+            <% @firm.methodologies.each do |m| %>
+              <p>
+              <%= "<header>#{m.methodology_base.name}</header>" if m.methodology_base %>
+              <%= m.description %>
+              </p>
+            <% end %>
+        </section>
+        <% end %>
+
+        <% if @firm.source_connections.any? %>
+        <section id="firm-relations">
+            <header><h1>Связи</h1></header>
+            <ul>
+                <% @firm.source_connections.each do |c| %>
+                  <li class="firm-relation">
+                  <%= c.description %> с <%= link_to c.target.name, :controller => :debug, :action => :view_firm, :id => c.target %>
+                  </li>
+                <% end %>
+            </ul>
+        </section>
+        <% end %>
+    </section>

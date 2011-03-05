@@ -1,0 +1,47 @@
+header h1 {
+	text-decoration: none;
+	font-weight: normal;
+	margin: 0;
+}
+
+header {
+	font-family: Georgia;
+	text-decoration: none;
+	font-weight: normal;
+	margin-bottom: 1em;
+}
+
+section > header > h1 {
+	font-size: 24pt;
+}
+
+section > section > header > h1 {
+	font-size: 20pt;
+}
+
+section > section > section > header > h1 {
+	font-size: 16pt;
+	margin-left: .5em;
+}
+
+section#firm-profile {
+	width: 50%;
+}
+
+.firm-office ul {
+	padding: .5em;
+	margin: 0;
+}
+
+li.firm-office-feature {
+	display: block;
+	text-indent: 1em;
+	margin-bottom: 1em;
+}
+
+#firm-atmosphere p, #firm-technologies p,
+#firm-methodologies p {
+	padding: 0;
+	text-indent: 1em;
+	margin: 0 0 1em;
+}

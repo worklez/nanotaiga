@@ -1,32 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nanotaiga</title>
+  <meta charset="utf-8" />
+  <title>Nanotaiga</title> <!-- FIXME: title helper -->
+  <!--[if lt IE 9]><script src="../j/html5.js"></script><![endif]-->
+  <!--<link rel="stylesheet" href="style-html5.css" />-->
   <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "firm_profile" %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
-  <style type="text/css">
-    .firm_profile_name_comments {
-      background: #a33;
-    }
-
-    .firm_profile_name_comment {
-      background: #fff;
-      margin-left: 1em;
-      padding-left: 1em;
-    }
-
-    .firm_profile_name_comment_author {
-      background: #fff;
-      margin-left: 1em;
-      padding-left: 3em;
-      margin-bottom: 1em;
-    }
-
-    .firm_product_rate {
-      color: #a33;
-    }
-  </style>
 </head>
 <body>
 
