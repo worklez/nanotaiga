@@ -2,10 +2,7 @@
         <header>
         <h1><%= @firm.name %></h1>
         <div id="firm-site"><a href="<%= @firm.site %>"><%= @firm.site %></a></div>
-        <span id="firm-subject"><%= @firm.subject %></span>
-        <% if @firm.originated %>
-               , <time id="firm-originated"><%= @firm.originated.year %></time>
-        <% end %>
+        <span id="firm-subject"><%= @firm.subject %></span><% if @firm.originated %>, <time id="firm-originated"><%= @firm.originated.year %></time><% end %>
         </header>
 
         <% if @firm.firm_products.any? %>
