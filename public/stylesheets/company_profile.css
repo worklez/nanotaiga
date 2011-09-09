@@ -24,23 +24,23 @@ section > section > section > header > h1 {
 	margin-left: .5em;
 }
 
-section#firm-profile {
+section#company-profile {
 	width: 50%;
 }
 
-.firm-office ul {
+.company-office ul {
 	padding: .5em;
 	margin: 0;
 }
 
-li.firm-office-feature {
+li.company-office-feature {
 	display: block;
 	text-indent: 1em;
 	margin-bottom: 1em;
 }
 
-#firm-atmosphere p, #firm-technologies p,
-#firm-methodologies p {
+#company-atmosphere p, #company-technologies p,
+#company-methodologies p {
 	padding: 0;
 	text-indent: 1em;
 	margin: 0 0 1em;

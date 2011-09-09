@@ -1,6 +1,6 @@
 class DebugController < ApplicationController
-  def view_firm
-    @firm = FirmProfile.find(params[:id])
+  def view_company
+    @company = CompanyProfile.find(params[:id])
   end
 
 end

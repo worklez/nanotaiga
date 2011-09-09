@@ -1,7 +1,5 @@
-class Methodology < ActiveRecord::Base
+class CompanyProfileSite < ActiveRecord::Base
   acts_as_commentable
   acts_as_likable
-
-  belongs_to :methodology_base
   belongs_to :company_profile
 end

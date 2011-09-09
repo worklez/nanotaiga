@@ -1,0 +1,112 @@
+  <div class="section-wrapper">
+    <section id="company-profile">
+        <header>
+        <h1><span class="company-item">
+            <div class="company-item-description">
+              <div class="type"><%= @company_name.class.name %></div>
+              <div class="id"><%= @company_name.id %></div>
+            </div>
+              <%= @company_name.name %></span></h1>
+          <div id="company-site"><span class="company-item">
+              <div class="company-item-description">
+                <div class="type"><%= @company_site.class.name %></div>
+                <div class="id"><%= @company_site.id %></div>
+              </div>
+              <a href="<%= @company.site %>"><%= @company.site %></a></span></div>
+        <span id="company-subject"><%= @company.subject %></span><% if @company.originated %>, <time id="company-originated"><%= @company.originated.year %></time><% end %>
+        </header>
+
+        <% if @company.company_products.any? %>
+        <section id="company-products">
+            <header><h1>В <%= @company.name %> делают</h1></header>
+            <ul class="company-products">
+            <% @company.company_products.each do |p| %>
+              <li class="company-product">
+                <span class="company-item">
+                  <div class="company-item-description">
+                    <div class="type"><%= p.class.name %></div>
+                    <div class="id"><%= p.id %></div>
+                  </div>
+                <% if p.site %>
+                  <a href="<%= p.site %>"><%= p.name %></a>
+                <% else %>
+                  <%= p.name %>
+                <% end %>
+                </span>
+
+                <!--
+                <div class="likes_box"><%= p.likes_sum %></div>
+                <sup class="company_product_rate"><%= p.likes_sum %></sup> -->
+                <% if p.description %>
+                  <div class="company_product_description"><%= p.description %></div>
+                <% end %>
+              </li>
+            <% end %>
+            </ul>
+        </section>
+        <% end %>
+
+        <% if @company.offices.any? %>
+        <section id="company-offices">
+            <header><h1>Офис<%= "ы" if @company.offices.length > 1 %></h1></header>
+
+            <% @company.offices.each do |office| %>
+            <section class="company-office">
+                <header><h1 class="company-office-address"><%= office.address %></h1></header>
+                <ul>
+                    <% office.bonuses.each do |b| %>
+                      <li class="company-office-feature">
+                      <% if b.name %><header><%= b.name %></header><% end %>
+                      <%= b.description %>
+                      </li>
+                    <% end %>
+                </ul>
+            </section>
+            <% end %>
+          </section>
+          <% end %>
+
+        <% if @company.atmosphere %>
+        <section id="company-atmosphere">
+            <header><h1>Атмосфера</h1></header>
+            <p><%= @company.atmosphere %></p>
+        </section>
+        <% end %>
+
+        <% if @company.technologies %>
+        <section id="company-technologies">
+            <header><h1>Технологии</h1></header>
+            <p><%= @company.technologies %></p>
+        </section>
+        <% end %>
+
+        <% if @company.methodologies.any? %>
+        <section id="company-methodologies">
+          <header><h1>Методологии</h1></header>
+            <% @company.methodologies.each do |m| %>
+              <p>
+              <%= "<header>#{m.methodology_base.name}</header>" if m.methodology_base %>
+              <%= m.description %>
+              </p>
+            <% end %>
+        </section>
+        <% end %>
+
+        <% if @company.source_connections.any? %>
+        <section id="company-relations">
+            <header><h1>Связи</h1></header>
+            <ul>
+                <% @company.source_connections.each do |c| %>
+                  <li class="company-relation">
+                  <%= c.description %> с <%= link_to c.target.name, :controller => :debug, :action => :view_company, :id => c.target %>
+                  </li>
+                <% end %>
+            </ul>
+        </section>
+        <% end %>
+    </section>
+
+    <aside id="comments-sidebox">
+      <div id="comments-sidebox-content"></div>
+    </aside>
+  </div>

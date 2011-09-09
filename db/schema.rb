@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116071224) do
+ActiveRecord::Schema.define(:version => 20110909153235) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -26,78 +26,78 @@ ActiveRecord::Schema.define(:version => 20110116071224) do
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
-  create_table "firm_products", :force => true do |t|
+  create_table "company_products", :force => true do |t|
     t.string   "name"
     t.string   "site"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
   end
 
-  create_table "firm_profile_atmospheres", :force => true do |t|
+  create_table "company_profile_atmospheres", :force => true do |t|
     t.text     "atmosphere"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profile_connections", :force => true do |t|
-    t.integer  "source_firm_id"
-    t.integer  "target_firm_id"
+  create_table "company_profile_connections", :force => true do |t|
+    t.integer  "source_company_id"
+    t.integer  "target_company_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profile_names", :force => true do |t|
+  create_table "company_profile_names", :force => true do |t|
     t.string   "name"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profile_origin_dates", :force => true do |t|
+  create_table "company_profile_origin_dates", :force => true do |t|
     t.datetime "originated"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profile_sites", :force => true do |t|
+  create_table "company_profile_sites", :force => true do |t|
     t.string   "site"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profile_subjects", :force => true do |t|
+  create_table "company_profile_subjects", :force => true do |t|
     t.text     "subject"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profile_technologies", :force => true do |t|
+  create_table "company_profile_technologies", :force => true do |t|
     t.text     "technologies"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profiles", :force => true do |t|
+  create_table "company_profiles", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_profiles_firm_types", :id => false, :force => true do |t|
-    t.integer  "firm_profile_id"
-    t.integer  "firm_type_id"
+  create_table "company_profiles_company_types", :id => false, :force => true do |t|
+    t.integer  "company_profile_id"
+    t.integer  "company_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "firm_types", :force => true do |t|
+  create_table "company_types", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20110116071224) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
   end
 
   create_table "methodology_bases", :force => true do |t|
@@ -141,14 +141,14 @@ ActiveRecord::Schema.define(:version => 20110116071224) do
   create_table "offices", :force => true do |t|
     t.string   "city"
     t.string   "address"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "posts", :force => true do |t|
     t.integer  "author_id"
-    t.integer  "firm_profile_id"
+    t.integer  "company_profile_id"
     t.string   "subject"
     t.text     "body"
     t.datetime "created_at"
