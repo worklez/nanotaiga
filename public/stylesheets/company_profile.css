@@ -26,6 +26,7 @@ section > section > section > header > h1 {
 
 section#company-profile {
 	width: 50%;
+	float: left;
 }
 
 .company-office ul {
@@ -44,4 +45,14 @@ li.company-office-feature {
 	padding: 0;
 	text-indent: 1em;
 	margin: 0 0 1em;
+}
+
+#comments-sidebox {
+	width: 44%;
+	float: right;
+}
+
+#section-wrapper {
+	width: 100%;
+	margin: 0 auto;
 }

@@ -1,5 +1,6 @@
 Nanotaiga::Application.routes.draw do
   match 'debug/view/:id' => 'debug#view_company'
+  match 'debug/comment' => 'debug#dumb_comment'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
